@@ -1,0 +1,209 @@
+---
+title: "Assignment 5"
+author: "Michael Entwistle, Momiana Fazal, Yosef Aryeh Kahan"
+date: "July 24, 2023"
+output: pdf_document
+---
+1. To calculate the effect of the variables relative to each other, we can use two pieces of information, the correlation coefficient and the standard deviation. By seeing how a change of one standard deviation affect the dependent variable for each, we can compare strength of effect. In the case of $x_1$, the change for one standard deviation is $\beta_1$ times $\sigma_1$ which is 12 times 0.5, or six. For $x_2$, the change is $\beta_2$ times $\sigma_2$ which 1.5 times 5, or 7.5. $zx_3$ is a standardized regressor. This means it tells us what the change in the dependent variable is for a change of $\sigma_3$ in $x_3$ as opposed to for a change of one unit in $x_3$. This means we don't need to adjust the coefficient and can simply say a change of $\sigma_3$ produces a change of 4 in the dependent variable. Using this information we can say that $x_2$ has the greatest effect and $x_3$ has the weakest effect.
+
+2.
+```{r include = FALSE}
+library(readxl)
+library(stargazer)
+pdi <- as.data.frame(read_excel("pdataincineq.xlsx"))
+
+pdi09 <- pdi[-c(954:2821),]
+#write.table(pdi09, file = "c1.txt")
+
+pdi14 <- pdi[-c(1:953,1883:2821),]
+#write.table(pdi14, file = "c2.txt")
+pdi19<- pdi[-c(1:1882),]
+#write.table(pdi19, file = "c3.txt")
+
+
+
+help <- function(x,y){
+  round(((x/y)*100), digits = 2)
+}
+
+pdi09$`Households with Income in the past 12 months below poverty level` <- help(pdi09$`Households with Income in the past 12 months below poverty level`,pdi09$`Number of households`)
+
+pdi09$`Household with public assistance income` <- help(pdi09$`Household with public assistance income`,pdi09$`Number of households`)
+
+pdi14$`Households with Income in the past 12 months below poverty level` <- help(pdi14$`Households with Income in the past 12 months below poverty level`,pdi14$`Number of households`)
+
+pdi14$`Household with public assistance income` <- help(pdi14$`Household with public assistance income`,pdi14$`Number of households`)
+
+pdi19$`Households with Income in the past 12 months below poverty level` <- help(pdi19$`Households with Income in the past 12 months below poverty level`,pdi19$`Number of households`)
+
+pdi19$`Household with public assistance income` <- help(pdi19$`Household with public assistance income`,pdi19$`Number of households`)
+
+
+########
+pdi09$`Population 16 Years and Older` <- help(pdi09$`Population 16 Years and Older`,pdi09$`Total Population`)
+
+pdi09$`Population between 25 and 64 years old` <- help(pdi09$`Population between 25 and 64 years old`,pdi09$`Total Population`)
+
+pdi09$`Population with a High school diploma` <- help(pdi09$`Population with a High school diploma`, pdi09$`Total Population`)
+
+pdi09$`Population with some college degree or associate's degree` <- help(pdi09$`Population with some college degree or associate's degree`,pdi09$`Total Population`)
+
+pdi09$`Population with a Bachelor's degree or higher` <- help(pdi09$`Population with a Bachelor's degree or higher`,pdi09$`Total Population`)
+
+pdi09$Male <- help(pdi09$Male,pdi09$`Total Population`)
+
+pdi09$Female <- help(pdi09$Female,pdi09$`Total Population`)
+
+pdi09$`White alone (population)` <- help(pdi09$`White alone (population)`,pdi09$`Total Population`)
+
+pdi09$`Black or African American alone (population)` <- help(pdi09$`Black or African American alone (population)`,pdi09$`Total Population`)
+
+pdi09$`American Indian and Alaska Native alone (population)` <- help(pdi09$`American Indian and Alaska Native alone (population)`,pdi09$`Total Population`)
+
+pdi09$`Asian alone (population)` <- help(pdi09$`Asian alone (population)`,pdi09$`Total Population`)
+
+pdi09$`Hispanic or Latino (population)` <- help(pdi09$`Hispanic or Latino (population)`, pdi09$`Total Population`)
+
+pdi09$`Married (population)` <- help(pdi09$`Married (population)`,pdi09$`Total Population`)
+
+pdi09$`Not Married (population)` <- help(pdi09$`Not Married (population)`,pdi09$`Total Population`)
+
+pdi14$`Population 16 Years and Older` <- help(pdi14$`Population 16 Years and Older`,pdi14$`Total Population`)
+
+pdi14$`Population between 25 and 64 years old` <- help(pdi14$`Population between 25 and 64 years old`,pdi14$`Total Population`)
+
+pdi14$`Population with a High school diploma` <- help(pdi14$`Population with a High school diploma`, pdi14$`Total Population`)
+
+pdi14$`Population with some college degree or associate's degree` <- help(pdi14$`Population with some college degree or associate's degree`,pdi14$`Total Population`)
+
+pdi14$`Population with a Bachelor's degree or higher` <- help(pdi14$`Population with a Bachelor's degree or higher`,pdi14$`Total Population`)
+
+pdi14$Male <- help(pdi14$Male,pdi14$`Total Population`)
+
+pdi14$Female <- help(pdi14$Female,pdi14$`Total Population`)
+
+pdi14$`White alone (population)` <- help(pdi14$`White alone (population)`,pdi14$`Total Population`)
+
+pdi14$`Black or African American alone (population)` <- help(pdi14$`Black or African American alone (population)`,pdi14$`Total Population`)
+
+pdi14$`American Indian and Alaska Native alone (population)` <- help(pdi14$`American Indian and Alaska Native alone (population)`,pdi14$`Total Population`)
+
+pdi14$`Asian alone (population)` <- help(pdi14$`Asian alone (population)`,pdi14$`Total Population`)
+
+pdi14$`Hispanic or Latino (population)` <- help(pdi14$`Hispanic or Latino (population)`, pdi14$`Total Population`)
+
+pdi14$`Married (population)` <- help(pdi14$`Married (population)`,pdi14$`Total Population`)
+
+pdi14$`Not Married (population)` <- help(pdi14$`Not Married (population)`,pdi14$`Total Population`)
+
+pdi19$`Population 16 Years and Older` <- help(pdi19$`Population 16 Years and Older`,pdi19$`Total Population`)
+
+pdi19$`Population between 25 and 64 years old` <- help(pdi19$`Population between 25 and 64 years old`,pdi19$`Total Population`)
+
+pdi19$`Population with a High school diploma` <- help(pdi19$`Population with a High school diploma`, pdi19$`Total Population`)
+
+pdi19$`Population with some college degree or associate's degree` <- help(pdi19$`Population with some college degree or associate's degree`,pdi19$`Total Population`)
+
+pdi19$`Population with a Bachelor's degree or higher` <- help(pdi19$`Population with a Bachelor's degree or higher`,pdi19$`Total Population`)
+
+pdi19$Male <- help(pdi19$Male,pdi19$`Total Population`)
+
+pdi19$Female <- help(pdi19$Female,pdi19$`Total Population`)
+
+pdi19$`White alone (population)` <- help(pdi19$`White alone (population)`,pdi19$`Total Population`)
+
+pdi19$`Black or African American alone (population)` <- help(pdi19$`Black or African American alone (population)`,pdi19$`Total Population`)
+
+pdi19$`American Indian and Alaska Native alone (population)` <- help(pdi19$`American Indian and Alaska Native alone (population)`,pdi19$`Total Population`)
+
+pdi19$`Asian alone (population)` <- help(pdi19$`Asian alone (population)`,pdi19$`Total Population`)
+
+pdi19$`Hispanic or Latino (population)` <- help(pdi19$`Hispanic or Latino (population)`, pdi19$`Total Population`)
+
+pdi19$`Married (population)` <- help(pdi19$`Married (population)`,pdi19$`Total Population`)
+
+pdi19$`Not Married (population)` <- help(pdi19$`Not Married (population)`,pdi19$`Total Population`)
+
+print(pdi09)
+
+print(pdi14)
+
+print(pdi19)
+
+
+
+stargazer(pdi09, type = "latex", title =  "Table of Descrpitive Statistics of Data on Income Inequality in Urban Areas(2009)", summary.stat = c("mean", "median", "min", "max", "p25", "p75", "sd"))
+
+#print(pdi09)stargazer(pdi09, type = "latex", title =  "Table of Descrpitive Statistics of Data on Income Inequality in Urban Areas, 2009", summary.stat = c("mean", "median", "min", "max", "p25", "p75", "sd"))
+
+
+#stargazer(pdi14, type = "latex", title =  "Table of Descrpitive Statistics of Data on Income Inequality in Urban Areas, 2014", summary.stat = c("mean", "median", "min", "max", "p25", "p75", "sd"))
+
+
+#stargazer(pdi19, type = "latex", title =  "Table of Descrpitive Statistics of Data on Income Inequality in Urban Areas, 2019", summary.stat = c("mean", "median", "min", "max", "p25", "p75", "sd"))
+```
+
+
+```{=latex}
+
+\begin{table}[!htbp] \centering 
+  \caption{Table of Descrpitive Statistics of Data on Income Inequality in Urban Areas(2009)} 
+  \label{}
+\tiny
+\begin{tabular}{@{\extracolsep{5pt}}lccccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+Statistic & \multicolumn{1}{c}{Mean} & \multicolumn{1}{c}{Median} & \multicolumn{1}{c}{Min} & \multicolumn{1}{c}{Max} & \multicolumn{1}{c}{Pctl(25)} & \multicolumn{1}{c}{Pctl(75)} & \multicolumn{1}{c}{St. Dev.} \\ 
+\hline \\[-1.8ex] 
+Year & 2,009.000 & 2,009 & 2,009 & 2,009 & 2,009 & 2,009 & 0.000 \\ 
+MSACode & 29,745.890 & 29,740 & 10,020 & 49,780 & 19,940 & 39,540 & 11,401.450 \\ 
+Income share of the top 5\% & 19.948 & 19.900 & 14.400 & 31.400 & 18.500 & 21.300 & 2.256 \\ 
+Gini Index & 44.017 & 44 & 35 & 56 & 42 & 46 & 3.195 \\ 
+Labor Force Participation Rate & 62.007 & 62.500 & 31.000 & 83.400 & 58.300 & 66.400 & 6.549 \\ 
+Unemployment Rate & 43.467 & 43.200 & 20.500 & 72.600 & 38.600 & 47.500 & 7.054 \\ 
+Number of households & 111,470.600 & 28,297 & 3,911 & 6,750,902 & 15,128 & 65,746 & 362,874.400 \\ 
+Households with Income in the past 12 months below poverty level & 15.812 & 14.330 & 4.170 & 60.270 & 11.500 & 18.170 & 6.952 \\ 
+Household with public assistance income & 2.441 & 2.210 & 0.130 & 10.770 & 1.630 & 2.920 & 1.210 \\ 
+Total Population & 300,289.300 & 73,459 & 11,100 & 18,912,644 & 39,467 & 170,049 & 1,020,203.000 \\ 
+Per capita income in the past 12 months (in 2009 inflation-adjusted dollars) & 22,332.350 & 21,900.5 & 6,022 & 48,394 & 19,581.8 & 24,790.5 & 4,745.286 \\ 
+Population 16 Years and Older & 78.781 & 78.910 & 65.750 & 87.730 & 77.220 & 80.560 & 2.904 \\ 
+Population between 25 and 64 years old & 50.913 & 51.540 & 33.010 & 64.630 & 49.500 & 53.150 & 3.602 \\ 
+Population with a High school diploma & 16.961 & 16.670 & 5.280 & 29.090 & 14.410 & 19.590 & 3.854 \\ 
+Population with some college degree or associate's degree & 15.663 & 15.620 & 7.160 & 24.910 & 13.750 & 17.550 & 2.830 \\ 
+Population with a Bachelor's degree or higher & 11.219 & 10.240 & 3.680 & 36.500 & 8.280 & 13.580 & 4.280 \\ 
+Male & 49.466 & 49.190 & 45.070 & 65.260 & 48.580 & 49.960 & 1.650 \\ 
+Female & 50.534 & 50.810 & 34.740 & 54.930 & 50.040 & 51.420 & 1.650 \\ 
+White alone (population) & 82.328 & 86.650 & 15.500 & 98.710 & 75.360 & 93.310 & 14.207 \\ 
+Black or African American alone (population) & 9.403 & 3.600 & 0.000 & 82.350 & 1.100 & 12.020 & 13.019 \\ 
+American Indian and Alaska Native alone (population) & 1.278 & 0.360 & 0.000 & 72.690 & 0.210 & 0.780 & 4.239 \\ 
+Asian alone (population) & 1.555 & 0.840 & 0.000 & 43.400 & 0.500 & 1.670 & 2.879 \\ 
+Hispanic or Latino (population) & 10.955 & 4.170 & 0.170 & 99.870 & 1.840 & 10.560 & 17.918 \\ 
+Married (population) & 41.555 & 41.650 & 24.610 & 54.670 & 38.940 & 44.630 & 4.387 \\ 
+Not Married (population) & 37.226 & 37.030 & 23.000 & 55.280 & 33.930 & 39.820 & 4.759 \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table}
+```
+
+```{r echo = FALSE}
+hist((pdi09$`Income share of the top 5%`), xlab = 'Income share of top 5% (2009)', main = 'Histogram of income share of top 5%', col = "green", labels = TRUE)
+
+hist((pdi09$`Gini Index`), xlab = 'Gini index (2009)', main = 'Histogram of Gini index (2009)', col = "red", labels = TRUE)
+
+hist((pdi09$`Households with Income in the past 12 months below poverty level`), xlab = 'Households with Income in the past 12 months below poverty level (2009)', main = 'Histogram of households with Income in the past 12 months below poverty level (2009)', col = "blue", labels = TRUE)
+
+hist((pdi09$`Unemployment Rate`), xlab = 'Unemployment rate (2009)', main = 'Histogram of unemployment rate (2009)', col = "purple", labels = TRUE)
+
+hist((pdi09$`Population between 25 and 64 years old`), xlab = 'Population between 25 and 64 years old (2009)', main = 'Histogram of population between 25 and 64 years old (2009)', col = "black", labels = TRUE)
+
+hist((pdi09$`Population with a Bachelor's degree or higher`), xlab = 'Population with a Bachelor degree or higher (2009)', main = 'Histogram of population with a Bachelor degree or higher (2009)', col = "orange", labels = TRUE)
+
+hist((pdi09$`Black or African American alone (population)`), xlab = 'Black or African American alone (population percentage, 2009)', main = 'Histogram of Black or African American alone (population percentage, 2009)', col = "yellow", labels = TRUE)
+
+hist((pdi09$`White alone (population)`), xlab = 'White alone (population percentage, 2009)', main = 'Histogram of White alone (population percentage, 2009)', col = "pink", labels = TRUE)
+
+hist((pdi09$`Hispanic or Latino (population)`), xlab = 'Hispanic or Latino alone (population percentage, 2009)', main = 'Histogram of Hispanic or Latino alone (population percentage, 2009)', col = "cyan", labels = TRUE)
+
+hist((pdi09$`Married (population)`), xlab = 'Married (population percentage, 2009)', main = 'Histogram of Married (population percentage, 2009)', col = "coral", labels = TRUE)
+
+```
