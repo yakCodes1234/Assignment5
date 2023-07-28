@@ -1,0 +1,219 @@
+#hist 2014
+{r echo = FALSE}
+hist((pdi14$`Income share of the top 5%`), xlab = 'Income share of top 5% (2014)', main = 'Histogram of income share of top 5%', col = "green", labels = TRUE)
+
+hist((pdi14$`Gini Index`), xlab = 'Gini index (2014)', main = 'Histogram of Gini index (2014)', col = "red", labels = TRUE)
+
+hist((pdi14$`Households with Income in the past 12 months below poverty level`), xlab = 'Households with Income in the past 12 months below poverty level (2014)', main = 'Histogram of households with Income in the past 12 months below poverty level (2014)', col = "blue", labels = TRUE)
+
+hist((pdi14$`Unemployment Rate`), xlab = 'Unemployment rate (2014)', main = 'Histogram of unemployment rate (2014)', col = "purple", labels = TRUE)
+
+hist((pdi14$`Population between 25 and 64 years old`), xlab = 'Population between 25 and 64 years old (2014)', main = 'Histogram of population between 25 and 64 years old (2014)', col = "black", labels = TRUE)
+
+hist((pdi14$`Population with a Bachelor's degree or higher`), xlab = 'Population with a Bachelor degree or higher (2014)', main = 'Histogram of population with a Bachelor degree or higher (2014)', col = "orange", labels = TRUE)
+
+hist((pdi14$`Black or African American alone (population)`), xlab = 'Black or African American alone (population percentage, 2014)', main = 'Histogram of Black or African American alone (population percentage, 2014)', col = "yellow", labels = TRUE)
+
+hist((pdi14$`White alone (population)`), xlab = 'White alone (population percentage, 2014)', main = 'Histogram of White alone (population percentage, 2014)', col = "pink", labels = TRUE)
+
+hist((pdi14$`Hispanic or Latino (population)`), xlab = 'Hispanic or Latino alone (population percentage, 2014)', main = 'Histogram of Hispanic or Latino alone (population percentage, 2014)', col = "cyan", labels = TRUE)
+
+hist((pdi14$`Married (population)`), xlab = 'Married (population percentage, 2014)', main = 'Histogram of Married (population percentage, 2014)', col = "coral", labels = TRUE)
+
+
+#hist 2019
+{r}
+hist((pdi19$`Income share of the top 5%`), xlab = 'Income share of top 5% (2019)', main = 'Histogram of income share of top 5%', col = "green", labels = TRUE)
+
+hist((pdi19$`Gini Index`), xlab = 'Gini index (2019)', main = 'Histogram of Gini index (2019)', col = "red", labels = TRUE)
+
+hist((pdi19$`Households with Income in the past 12 months below poverty level`), xlab = 'Households with Income in the past 12 months below poverty level (2019)', main = 'Histogram of households with Income in the past 12 months below poverty level (2019)', col = "blue", labels = TRUE)
+
+hist((pdi19$`Unemployment Rate`), xlab = 'Unemployment rate (2019)', main = 'Histogram of unemployment rate (2019)', col = "purple", labels = TRUE)
+
+hist((pdi19$`Population between 25 and 64 years old`), xlab = 'Population between 25 and 64 years old (2019)', main = 'Histogram of population between 25 and 64 years old (2019)', col = "black", labels = TRUE)
+
+hist((pdi19$`Population with a Bachelor's degree or higher`), xlab = 'Population with a Bachelor degree or higher (2019)', main = 'Histogram of population with a Bachelor degree or higher (2019)', col = "orange", labels = TRUE)
+
+hist((pdi19$`Black or African American alone (population)`), xlab = 'Black or African American alone (population percentage, 2019)', main = 'Histogram of Black or African American alone (population percentage, 2019)', col = "yellow", labels = TRUE)
+
+hist((pdi19$`White alone (population)`), xlab = 'White alone (population percentage, 2019)', main = 'Histogram of White alone (population percentage, 2019)', col = "pink", labels = TRUE)
+
+hist((pdi19$`Hispanic or Latino (population)`), xlab = 'Hispanic or Latino alone (population percentage, 2019)', main = 'Histogram of Hispanic or Latino alone (population percentage, 2019)', col = "cyan", labels = TRUE)
+
+hist((pdi19$`Married (population)`), xlab = 'Married (population percentage, 2019)', main = 'Histogram of Married (population percentage, 2019)', col = "coral", labels = TRUE)
+
+#scatter 09
+{r}
+
+ggplot(data = pdi09, aes(x = `Households with Income in the past 12 months below poverty level`, y = `Income share of the top 5%`)) +
+  geom_smooth(method = "lm") +
+  geom_point(color = "green", alpha = 0.6) +
+  labs(x = "Households with Income below poverty level", y = "Income share of top 5%",
+       title = "Scatter Plot of Income Share of Top 5%",
+       subtitle = "Against Households with Income below Poverty Level",
+       caption = "Source: Your Data Source") +
+  theme_minimal()
+
+
+ggplot(data = pdi09, aes(x = `Households with Income in the past 12 months below poverty level`, y = `Gini Index`)) +
+  geom_point(color = "blue", alpha = 0.6) +
+  geom_smooth(method = "lm") +
+  labs(x = "Households with Income below poverty level", y = "Gini Index",
+       title = "Scatter Plot of Gini Index",
+       subtitle = "Against Households with Income below Poverty Level",
+       caption = "Source: Your Data Source") +
+  theme_minimal()
+
+
+ggplot(data = pdi09, aes(x = `Household with public assistance income`, y = `Gini Index`)) +
+  geom_point(color = "yellow", alpha = 0.6) +
+  geom_smooth(method = "lm") +
+  labs(x = "Household with public assistance income", y = "Gini Index",
+       title = "Scatter Plot of Gini Index",
+       subtitle = "Against Household with public assistance income",
+       caption = "Source: Your Data Source") +
+  theme_minimal()
+
+ggplot(data = pdi09, aes(x = `Household with public assistance income`, y = `Income share of the top 5%`)) +
+  geom_point(color = "pink", alpha = 0.6) +
+  geom_smooth(method = "lm") +
+  labs(x = "Household with public assistance income", y = "Income share of top 5%",
+       title = "Scatter Plot of Income Share of Top 5%",
+       subtitle = "Against Household with public assistance income",
+       caption = "Source: Your Data Source") +
+  theme_minimal()
+
+ggplot(data = pdi09, aes(x = `White alone (population)`, y = `Per capita income in the past 12 months (in 2009 inflation-adjusted dollars)`)) +
+  geom_point(color = "orange", alpha = 0.6) +
+  geom_smooth(method = "lm") +
+  labs(x = "White alone (population)", y = "Per capita income in the past 12 months",
+       title = "Scatter Plot of Per Capita Income and White Population",
+       subtitle = "Against White Population",
+       caption = "Source: Your Data Source") +
+  theme_minimal()
+
+ggplot(data = pdi09, aes(x = `Black or African American alone (population)`, y = `Per capita income in the past 12 months (in 2009 inflation-adjusted dollars)`)) +
+  geom_point(color = "black", alpha = 0.6) +
+  geom_smooth(method = "lm") +
+  labs(x = "Black or African American alone (population)", y = "Per capita income in the past 12 months",
+       title = "Scatter Plot of Per Capita Income and Black or African American Population",
+       subtitle = "Against Black or African American Population",
+       caption = "Source: Your Data Source") +
+  theme_minimal()
+
+#scatter 14
+{r}
+ggplot(data = pdi14, aes(x = `Households with Income in the past 12 months below poverty level`, y = `Income share of the top 5%`)) +
+  geom_smooth(method = "lm") +
+  geom_point(color = "green", alpha = 0.6) +
+  labs(x = "Households with Income below poverty level", y = "Income share of top 5%",
+       title = "Scatter Plot of Income Share of Top 5%",
+       subtitle = "Against Households with Income below Poverty Level",
+       caption = "Source: Your Data Source") +
+  theme_minimal()
+
+
+ggplot(data = pdi14, aes(x = `Households with Income in the past 12 months below poverty level`, y = `Gini Index`)) +
+  geom_point(color = "blue", alpha = 0.6) +
+  geom_smooth(method = "lm") +
+  labs(x = "Households with Income below poverty level", y = "Gini Index",
+       title = "Scatter Plot of Gini Index",
+       subtitle = "Against Households with Income below Poverty Level",
+       caption = "Source: Your Data Source") +
+  theme_minimal()
+
+
+ggplot(data = pdi14, aes(x = `Household with public assistance income`, y = `Gini Index`)) +
+  geom_point(color = "yellow", alpha = 0.6) +
+  geom_smooth(method = "lm") +
+  labs(x = "Household with public assistance income", y = "Gini Index",
+       title = "Scatter Plot of Gini Index",
+       subtitle = "Against Household with public assistance income",
+       caption = "Source: Your Data Source") +
+  theme_minimal()
+
+ggplot(data = pdi14, aes(x = `Household with public assistance income`, y = `Income share of the top 5%`)) +
+  geom_point(color = "pink", alpha = 0.6) +
+  geom_smooth(method = "lm") +
+  labs(x = "Household with public assistance income", y = "Income share of top 5%",
+       title = "Scatter Plot of Income Share of Top 5%",
+       subtitle = "Against Household with public assistance income",
+       caption = "Source: Your Data Source") +
+  theme_minimal()
+
+ggplot(data = pdi14, aes(x = `White alone (population)`, y = `Per capita income in the past 12 months (in 2009 inflation-adjusted dollars)`)) +
+  geom_point(color = "orange", alpha = 0.6) +
+  geom_smooth(method = "lm") +
+  labs(x = "White alone (population)", y = "Per capita income in the past 12 months",
+       title = "Scatter Plot of Per Capita Income and White Population",
+       subtitle = "Against White Population",
+       caption = "Source: Your Data Source") +
+  theme_minimal()
+
+ggplot(data = pdi14, aes(x = `Black or African American alone (population)`, y = `Per capita income in the past 12 months (in 2009 inflation-adjusted dollars)`)) +
+  geom_point(color = "black", alpha = 0.6) +
+  geom_smooth(method = "lm") +
+  labs(x = "Black or African American alone (population)", y = "Per capita income in the past 12 months",
+       title = "Scatter Plot of Per Capita Income and Black or African American Population",
+       subtitle = "Against Black or African American Population",
+       caption = "Source: Your Data Source") +
+  theme_minimal()
+
+#scatter 19
+{r}
+ggplot(data = pdi19, aes(x = `Households with Income in the past 12 months below poverty level`, y = `Income share of the top 5%`)) +
+  geom_smooth(method = "lm") +
+  geom_point(color = "green", alpha = 0.6) +
+  labs(x = "Households with Income below poverty level", y = "Income share of top 5%",
+       title = "Scatter Plot of Income Share of Top 5%",
+       subtitle = "Against Households with Income below Poverty Level",
+       caption = "Source: Your Data Source") +
+  theme_minimal()
+
+
+ggplot(data = pdi19, aes(x = `Households with Income in the past 12 months below poverty level`, y = `Gini Index`)) +
+  geom_point(color = "blue", alpha = 0.6) +
+  geom_smooth(method = "lm") +
+  labs(x = "Households with Income below poverty level", y = "Gini Index",
+       title = "Scatter Plot of Gini Index",
+       subtitle = "Against Households with Income below Poverty Level",
+       caption = "Source: Your Data Source") +
+  theme_minimal()
+
+
+ggplot(data = pdi19, aes(x = `Household with public assistance income`, y = `Gini Index`)) +
+  geom_point(color = "yellow", alpha = 0.6) +
+  geom_smooth(method = "lm") +
+  labs(x = "Household with public assistance income", y = "Gini Index",
+       title = "Scatter Plot of Gini Index",
+       subtitle = "Against Household with public assistance income",
+       caption = "Source: Your Data Source") +
+  theme_minimal()
+
+ggplot(data = pdi19, aes(x = `Household with public assistance income`, y = `Income share of the top 5%`)) +
+  geom_point(color = "pink", alpha = 0.6) +
+  geom_smooth(method = "lm") +
+  labs(x = "Household with public assistance income", y = "Income share of top 5%",
+       title = "Scatter Plot of Income Share of Top 5%",
+       subtitle = "Against Household with public assistance income",
+       caption = "Source: Your Data Source") +
+  theme_minimal()
+
+ggplot(data = pdi19, aes(x = `White alone (population)`, y = `Per capita income in the past 12 months (in 2009 inflation-adjusted dollars)`)) +
+  geom_point(color = "orange", alpha = 0.6) +
+  geom_smooth(method = "lm") +
+  labs(x = "White alone (population)", y = "Per capita income in the past 12 months",
+       title = "Scatter Plot of Per Capita Income and White Population",
+       subtitle = "Against White Population",
+       caption = "Source: Your Data Source") +
+  theme_minimal()
+
+ggplot(data = pdi19, aes(x = `Black or African American alone (population)`, y = `Per capita income in the past 12 months (in 2009 inflation-adjusted dollars)`)) +
+  geom_point(color = "black", alpha = 0.6) +
+  geom_smooth(method = "lm") +
+  labs(x = "Black or African American alone (population)", y = "Per capita income in the past 12 months",
+       title = "Scatter Plot of Per Capita Income and Black or African American Population",
+       subtitle = "Against Black or African American Population",
+       caption = "Source: Your Data Source") +
+  theme_minimal()

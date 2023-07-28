@@ -10,6 +10,7 @@ output: pdf_document
 ```{r include = FALSE}
 library(readxl)
 library(stargazer)
+library(ggplot2)
 pdi <- as.data.frame(read_excel("pdataincineq.xlsx"))
 
 pdi09 <- pdi[-c(954:2821),]
@@ -132,7 +133,7 @@ print(pdi19)
 
 
 
-stargazer(pdi09, type = "latex", title =  "Table of Descrpitive Statistics of Data on Income Inequality in Urban Areas(2009)", summary.stat = c("mean", "median", "min", "max", "p25", "p75", "sd"))
+#stargazer(pdi09, type = "latex", title =  "Table of Descrpitive Statistics of Data on Income Inequality in Urban Areas(2009)", summary.stat = c("mean", "median", "min", "max", "p25", "p75", "sd"))
 
 #print(pdi09)stargazer(pdi09, type = "latex", title =  "Table of Descrpitive Statistics of Data on Income Inequality in Urban Areas, 2009", summary.stat = c("mean", "median", "min", "max", "p25", "p75", "sd"))
 
@@ -155,8 +156,6 @@ stargazer(pdi09, type = "latex", title =  "Table of Descrpitive Statistics of Da
 \hline \\[-1.8ex] 
 Statistic & \multicolumn{1}{c}{Mean} & \multicolumn{1}{c}{Median} & \multicolumn{1}{c}{Min} & \multicolumn{1}{c}{Max} & \multicolumn{1}{c}{Pctl(25)} & \multicolumn{1}{c}{Pctl(75)} & \multicolumn{1}{c}{St. Dev.} \\ 
 \hline \\[-1.8ex] 
-Year & 2,009.000 & 2,009 & 2,009 & 2,009 & 2,009 & 2,009 & 0.000 \\ 
-MSACode & 29,745.890 & 29,740 & 10,020 & 49,780 & 19,940 & 39,540 & 11,401.450 \\ 
 Income share of the top 5\% & 19.948 & 19.900 & 14.400 & 31.400 & 18.500 & 21.300 & 2.256 \\ 
 Gini Index & 44.017 & 44 & 35 & 56 & 42 & 46 & 3.195 \\ 
 Labor Force Participation Rate & 62.007 & 62.500 & 31.000 & 83.400 & 58.300 & 66.400 & 6.549 \\ 
@@ -164,7 +163,7 @@ Unemployment Rate & 43.467 & 43.200 & 20.500 & 72.600 & 38.600 & 47.500 & 7.054 
 Number of households & 111,470.600 & 28,297 & 3,911 & 6,750,902 & 15,128 & 65,746 & 362,874.400 \\ 
 Households with Income in the past 12 months below poverty level & 15.812 & 14.330 & 4.170 & 60.270 & 11.500 & 18.170 & 6.952 \\ 
 Household with public assistance income & 2.441 & 2.210 & 0.130 & 10.770 & 1.630 & 2.920 & 1.210 \\ 
-Total Population & 300,289.300 & 73,459 & 11,100 & 18,912,644 & 39,467 & 170,049 & 1,020,203.000 \\ 
+Total Population in thousands & 30.029 & 7.346 & 1.11 & 18,912.644 & 3.947 & 170.049 & 1,020.203 \\ 
 Per capita income in the past 12 months (in 2009 inflation-adjusted dollars) & 22,332.350 & 21,900.5 & 6,022 & 48,394 & 19,581.8 & 24,790.5 & 4,745.286 \\ 
 Population 16 Years and Older & 78.781 & 78.910 & 65.750 & 87.730 & 77.220 & 80.560 & 2.904 \\ 
 Population between 25 and 64 years old & 50.913 & 51.540 & 33.010 & 64.630 & 49.500 & 53.150 & 3.602 \\ 
@@ -183,6 +182,83 @@ Not Married (population) & 37.226 & 37.030 & 23.000 & 55.280 & 33.930 & 39.820 &
 \hline \\[-1.8ex] 
 \end{tabular} 
 \end{table}
+
+
+
+\begin{table}[!htbp] \centering 
+  \caption{Table of Descrpitive Statistics of Data on Income Inequality in Urban Areas, 2014} 
+  \label{}
+\tiny
+\begin{tabular}{@{\extracolsep{5pt}}lccccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+Statistic & \multicolumn{1}{c}{Mean} & \multicolumn{1}{c}{Median} & \multicolumn{1}{c}{Min} & \multicolumn{1}{c}{Max} & \multicolumn{1}{c}{Pctl(25)} & \multicolumn{1}{c}{Pctl(75)} & \multicolumn{1}{c}{St. Dev.} \\ 
+\hline \\[-1.8ex] 
+Year & 2,014.000 & 2,014 & 2,014 & 2,014 & 2,014 & 2,014 & 0.000 \\ 
+MSACode & 29,749.730 & 29,780 & 10,100 & 49,820 & 19,940 & 39,460 & 11,370.330 \\ 
+Income share of the top 5\% & 20.509 & 20.430 & 14.480 & 30.820 & 19.020 & 21.830 & 2.167 \\ 
+Gini Index & 44.780 & 44.610 & 37.180 & 60.230 & 42.780 & 46.620 & 3.003 \\ 
+Labor Force Participation Rate & 60.376 & 60.900 & 24.300 & 80.000 & 56.700 & 65.000 & 6.841 \\ 
+Unemployment Rate & 8.359 & 7.900 & 1.700 & 36.500 & 6.400 & 9.700 & 3.138 \\ 
+Number of households & 118,445.100 & 29,558 & 3,705 & 7,105,003 & 15,361 & 68,502 & 383,833.900 \\ 
+Households with Income in the past 12 months below poverty level & 16.812 & 15.530 & 4.760 & 63.690 & 12.930 & 18.960 & 6.574 \\ 
+Household with public assistance income & 2.781 & 2.480 & 0.240 & 19.620 & 1.860 & 3.340 & 1.448 \\ 
+Total Population & 321,505.000 & 76,237 & 13,265 & 19,865,045 & 40,496 & 184,652 & 1,079,669.000 \\ 
+Per capita income in the past 12 months (in 2009 inflation-adjusted dollars) & 23,965.850 & 23,510 & 7,042 & 50,723 & 20,964 & 26,497 & 5,028.046 \\ 
+Population 16 Years and Older & 79.848 & 79.890 & 69.150 & 97.400 & 78.240 & 81.580 & 2.896 \\ 
+Population between 25 and 64 years old & 66.220 & 66.760 & 46.380 & 88.380 & 64.170 & 68.940 & 4.637 \\ 
+Population with a High school diploma & 18.304 & 18.140 & 6.450 & 32.740 & 15.210 & 21.170 & 4.591 \\ 
+Population with some college degree or associate's degree & 5.557 & 5.510 & 1.590 & 11.860 & 4.530 & 6.460 & 1.476 \\ 
+Population with a Bachelor's degree or higher & 13.855 & 12.800 & 5.230 & 44.290 & 10.190 & 16.760 & 5.062 \\ 
+Male & 49.702 & 49.410 & 45.680 & 67.030 & 48.730 & 50.200 & 1.700 \\ 
+Female & 50.298 & 50.590 & 32.970 & 54.320 & 49.800 & 51.270 & 1.700 \\ 
+White alone (population) & 82.539 & 87.150 & 16.660 & 98.260 & 76.240 & 92.690 & 13.961 \\ 
+Black or African American alone (population) & 8.937 & 3.610 & 0.010 & 75.920 & 1.270 & 11.140 & 12.359 \\ 
+American Indian and Alaska Native alone (population) & 1.323 & 0.360 & 0.000 & 74.370 & 0.200 & 0.820 & 4.306 \\ 
+Asian alone (population) & 1.761 & 0.970 & 0.000 & 43.170 & 0.550 & 1.870 & 3.031 \\ 
+Hispanic or Latino (population) & 12.604 & 5.520 & 0.160 & 99.920 & 2.650 & 12.810 & 18.586 \\ 
+Married (population) & 40.142 & 40.570 & 22.440 & 59.220 & 37.680 & 42.860 & 4.184 \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table} 
+
+\begin{table}[!htbp] \centering 
+  \caption{Table of Descrpitive Statistics of Data on Income Inequality in Urban Areas, 2019} 
+  \label{}
+\tiny
+\begin{tabular}{@{\extracolsep{5pt}}lccccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+Statistic & \multicolumn{1}{c}{Mean} & \multicolumn{1}{c}{Median} & \multicolumn{1}{c}{Min} & \multicolumn{1}{c}{Max} & \multicolumn{1}{c}{Pctl(25)} & \multicolumn{1}{c}{Pctl(75)} & \multicolumn{1}{c}{St. Dev.} \\ 
+\hline \\[-1.8ex] 
+Year & 2,019.000 & 2,019 & 2,019 & 2,019 & 2,019 & 2,019 & 0.000 \\ 
+MSACode & 29,820.330 & 29,800 & 10,100 & 49,820 & 20,030 & 39,640 & 11,383.780 \\ 
+Income share of the top 5\% & 21.130 & 21.040 & 14.510 & 31.040 & 19.593 & 22.518 & 2.353 \\ 
+Gini Index & 45.353 & 45 & 38 & 59 & 43 & 47 & 3.058 \\ 
+Labor Force Participation Rate & 59.609 & 60.150 & 22.500 & 79.100 & 55.600 & 64.300 & 6.923 \\ 
+Unemployment Rate & 5.641 & 5.300 & 1.400 & 24.300 & 4.200 & 6.500 & 2.305 \\ 
+Number of households & 122,375.500 & 29,376.5 & 3,548 & 6,997,001 & 15,317.2 & 71,361.8 & 391,641.900 \\ 
+Households with Income in the past 12 months below poverty level & 15.527 & 14.280 & 4.520 & 61.550 & 11.610 & 17.925 & 6.436 \\ 
+Household with public assistance income & 2.433 & 2.085 & 0.210 & 25.310 & 1.532 & 2.908 & 1.709 \\ 
+Total Population & 330,282.300 & 75,436 & 12,813 & 19,294,236 & 39,463 & 182,121.2 & 1,093,044.000 \\ 
+Per capita income in the past 12 months (in 2009 inflation-adjusted dollars) & 28,096.890 & 27,466 & 7,308 & 60,746 & 24,289 & 31,190.8 & 6,162.138 \\ 
+Population 16 Years and Older & 80.162 & 80.315 & 68.340 & 93.590 & 78.625 & 81.940 & 2.880 \\ 
+Population between 25 and 64 years old & 67.469 & 67.955 & 47.500 & 89.740 & 65.333 & 70.138 & 4.606 \\ 
+Population with a High school diploma & 18.264 & 18.055 & 5.680 & 33.040 & 15.250 & 20.950 & 4.557 \\ 
+Population with some college degree or associate's degree & 6.239 & 6.115 & 1.980 & 14.020 & 5.102 & 7.280 & 1.597 \\ 
+Population with a Bachelor's degree or higher & 16.224 & 14.940 & 4.560 & 47.990 & 11.925 & 19.565 & 5.995 \\ 
+Male & 49.732 & 49.450 & 46.080 & 65.970 & 48.790 & 50.310 & 1.706 \\ 
+Female & 50.268 & 50.550 & 34.030 & 53.920 & 49.690 & 51.210 & 1.706 \\ 
+White alone (population) & 81.592 & 86.380 & 14.390 & 97.770 & 75.353 & 92.230 & 14.395 \\ 
+Black or African American alone (population) & 9.276 & 3.775 & 0.000 & 77.620 & 1.385 & 11.518 & 12.703 \\ 
+American Indian and Alaska Native alone (population) & 1.381 & 0.380 & 0.000 & 75.900 & 0.220 & 0.860 & 4.465 \\ 
+Asian alone (population) & 1.919 & 1.025 & 0.000 & 42.660 & 0.610 & 2.047 & 3.159 \\ 
+Hispanic or Latino (population) & 13.493 & 6.225 & 0.070 & 99.750 & 3.043 & 13.958 & 19.001 \\ 
+Married (population) & 39.807 & 40.080 & 22.250 & 58.120 & 37.452 & 42.580 & 4.257 \\ 
+Not Married (population) & 40.356 & 40.080 & 27.950 & 57.560 & 37.130 & 42.978 & 4.782 \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table} 
 ```
 
 ```{r echo = FALSE}
@@ -190,7 +266,6 @@ hist((pdi09$`Income share of the top 5%`), xlab = 'Income share of top 5% (2009)
 
 hist((pdi09$`Gini Index`), xlab = 'Gini index (2009)', main = 'Histogram of Gini index (2009)', col = "red", labels = TRUE)
 
-hist((pdi09$`Households with Income in the past 12 months below poverty level`), xlab = 'Households with Income in the past 12 months below poverty level (2009)', main = 'Histogram of households with Income in the past 12 months below poverty level (2009)', col = "blue", labels = TRUE)
 
 hist((pdi09$`Unemployment Rate`), xlab = 'Unemployment rate (2009)', main = 'Histogram of unemployment rate (2009)', col = "purple", labels = TRUE)
 
@@ -205,5 +280,337 @@ hist((pdi09$`White alone (population)`), xlab = 'White alone (population percent
 hist((pdi09$`Hispanic or Latino (population)`), xlab = 'Hispanic or Latino alone (population percentage, 2009)', main = 'Histogram of Hispanic or Latino alone (population percentage, 2009)', col = "cyan", labels = TRUE)
 
 hist((pdi09$`Married (population)`), xlab = 'Married (population percentage, 2009)', main = 'Histogram of Married (population percentage, 2009)', col = "coral", labels = TRUE)
+
+hist((pdi09$`Total Population`), col = "grey", labels = TRUE)
+```
+
+
+
+
+
+
+
+
+
+ 1.Poverty and wealth inequality
+ 
+
+```{r echo=FALSE}
+hist((pdi09$`Households with Income in the past 12 months below poverty level`), xlab = 'Households below poverty level in last 12 months(2009)', main = 'Histogram poverty level in last 12 months(2009)', col = "green", ylim = c(0,430), labels = TRUE)
+
+hist((pdi14$`Households with Income in the past 12 months below poverty level`), xlab = 'Households below poverty level in last 12 months(2014)', main = 'Histogram poverty level in last 12 months(2014)', col = "red", ylim = c(0,400), labels = TRUE)
+
+
+hist((pdi19$`Households with Income in the past 12 months below poverty level`), xlab = 'Households below poverty level in last 12 months(2019)', main = 'Histogram of poverty level in last 12 months(2019)', col = "yellow",  ylim=c(0,450), labels = TRUE)
+
+ggplot(data = pdi09, aes(x = `Households with Income in the past 12 months below poverty level`, y = `Income share of the top 5%`)) +
+  geom_smooth(formula = y ~ x, method = "lm") +
+  geom_point(color = "green", alpha = 0.6) +
+  labs(x = "Households with Income below poverty level", y = "Income share of top 5%",
+       title = "Scatter Plot of Income Share of Top 5%",
+       subtitle = "Against Households with Income below Poverty Level",
+       caption = "Source: Your Data Source") +
+  theme_minimal()
+ggplot(data = pdi14, aes(x = `Households with Income in the past 12 months below poverty level`, y = `Income share of the top 5%`)) +
+  geom_smooth(formula = y ~ x, method = "lm") +
+  geom_point(color = "red", alpha = 0.6) +
+  labs(x = "Households with Income below poverty level", y = "Income share of top 5%",
+       title = "Scatter Plot of Income Share of Top 5%",
+       subtitle = "Against Households with Income below Poverty Level",
+       caption = "Source: Your Data Source") +
+  theme_minimal()
+ggplot(data = pdi19, aes(x = `Households with Income in the past 12 months below poverty level`, y = `Income share of the top 5%`)) +
+  geom_smooth(formula = y ~ x, method = "lm") +
+  geom_point(color = "yellow", alpha = 0.6) +
+  labs(x = "Households with Income below poverty level", y = "Income share of top 5%",
+       title = "Scatter Plot of Income Share of Top 5%",
+       subtitle = "Against Households with Income below Poverty Level",
+       caption = "Source: Your Data Source") +
+  theme_minimal()
+```
+
+An examination of the data: The 2009 scatter plot shows almost no correlation between Households with income in the past 12 months below poverty level and the income share of the top 5%. However, the plots for 2014 and 2019 do show some degree of correlation. To get more information on this, we will need to run a regression.
+
+```{r include = FALSE}
+pov09 = lm(pdi09$`Income share of the top 5%`~pdi09$`Households with Income in the past 12 months below poverty level`)
+pov14 = lm(pdi14$`Income share of the top 5%`~pdi14$`Households with Income in the past 12 months below poverty level`)
+pov19 = lm(pdi19$`Income share of the top 5%`~pdi19$`Households with Income in the past 12 months below poverty level`)
+
+stargazer(pov09,report=("vc*p"))
+stargazer(pov14,report=("vc*p"))
+stargazer(pov19,report=("vc*p"))
+```
+
+```{=latex}
+\begin{table}[!htbp] \centering 
+  \caption{} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}}lc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & \multicolumn{1}{c}{\textit{Dependent variable:}} \\ 
+\cline{2-2} 
+\\[-1.8ex] & `Income share of the top 5\%` \\ 
+\hline \\[-1.8ex] 
+ `Households with Income in the past 12 months below poverty level` & 0.011 \\
+  & p = 0.286 \\
+  & (0.011) \\ 
+  & \\ 
+ Constant & 19.770$^{***}$ \\ 
+  & (0.182) \\ 
+  & \\ 
+\hline \\[-1.8ex] 
+Observations & 952 \\ 
+R$^{2}$ & 0.001 \\ 
+Adjusted R$^{2}$ & 0.0001 \\ 
+Residual Std. Error & 2.256 (df = 950) \\ 
+F Statistic & 1.142 (df = 1; 950) \\ 
+\hline 
+\hline \\[-1.8ex] 
+\textit{Note:}  & \multicolumn{1}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+\end{tabular} 
+\end{table}
+
+
+
+
+
+\begin{table}[!htbp] \centering 
+  \caption{} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}}lc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & \multicolumn{1}{c}{\textit{Dependent variable:}} \\ 
+\cline{2-2} 
+\\[-1.8ex] & `Income share of the top 5\%` \\ 
+\hline \\[-1.8ex] 
+ `Households with Income in the past 12 months below poverty level` & 0.093$^{***}$ \\
+  & p = 0.000 \\
+  & (0.010) \\ 
+  & \\ 
+ Constant & 18.944$^{***}$ \\ 
+  & (0.188) \\ 
+  & \\ 
+\hline \\[-1.8ex] 
+Observations & 929 \\ 
+R$^{2}$ & 0.080 \\ 
+Adjusted R$^{2}$ & 0.079 \\ 
+Residual Std. Error & 2.080 (df = 927) \\ 
+F Statistic & 80.361$^{***}$ (df = 1; 927) \\ 
+\hline 
+\hline \\[-1.8ex] 
+\textit{Note:}  & \multicolumn{1}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+\end{tabular} 
+\end{table}
+
+
+\begin{table}[!htbp] \centering 
+  \caption{} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}}lc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & \multicolumn{1}{c}{\textit{Dependent variable:}} \\ 
+\cline{2-2} 
+\\[-1.8ex] & `Income share of the top 5\%` \\ 
+\hline \\[-1.8ex] 
+ `Households with Income in the past 12 months below poverty level` & 0.105$^{***}$ \\
+  & p = 0.000 \\
+  & (0.011) \\ 
+  & \\ 
+ Constant & 19.495$^{***}$ \\ 
+  & (0.192) \\ 
+  & \\ 
+\hline \\[-1.8ex] 
+Observations & 938 \\ 
+R$^{2}$ & 0.083 \\ 
+Adjusted R$^{2}$ & 0.082 \\ 
+Residual Std. Error & 2.254 (df = 936) \\ 
+F Statistic & 84.686$^{***}$ (df = 1; 936) \\ 
+\hline 
+\hline \\[-1.8ex] 
+\textit{Note:}  & \multicolumn{1}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+\end{tabular} 
+\end{table} 
+
+```
+
+
+
+As can be seen from the regression tables, 2009's regression coefficient lacks both statistical significance and practical significance. It's p value is 0.286 and a $\beta$ of 0.011 means that an increase in one percentage point in households below the poverty level is correlated to a 0.011 percentage point increase in the income share of the top 5%. An increase of 90 percentage points would be needed for a one On the other hand, the coefficients for 2014 and 2019 are statistically significant with three stars. A change of one $\sigma_x$ in the 2014 poverty level correlates with an increase of 0.611 percentage points in income share by the top 5%. That is about a 0.2821 $\sigma_y$ change. For 2019 the results are similar with a change of $\sigma_x$ correlating to a 0.2872 $\sigma_y$ change. These would seem to be practically significant changes. Of course, there are almost certainly cases of OVB here as these are single variable regressions. Once we have finished discussing the variables by themselves, we will try looking at them together to get a more accurate picture of the situation. It is possible that the reason the 2009 numbers don't display any significant correlation is because there are other variables at play that essentially cancel out the effect of the correlation and perhaps the effect would become viable if we could isolate the variables. It is also possible that poverty only correlates with income inequality insofar as it correlates with other things, like education level, and isolating the variables would show almost no correlation. It is important to establish if a link exists between income inequality and poverty in part to establish what exactly income inequality is. There are two sides in the debate about income inequality. One side argues  that income inequality is a product of society as a whole getting wealthier and the gains are just not distributed equally, although everyone does gain. In this understanding, income inequality is not a major problem, even if it is not ideal. The other side argues that income inequality is a result sectors of society getting left behind, and not gaining from the advances that society makes. In this understanding, income inequality is a major problem, and should be correlated with high poverty levels. Examining the correlation between poverty and inequality is therefore important in drafting policy to deal with the issue.
+
+2. Race
+```{r echo = FALSE}
+
+hist((pdi09$`Black or African American alone (population)`), xlab = 'Black or African American alone (population percentage, 2009)', main = 'Histogram of Black or African American alone (population percentage, 2009)', col = "yellow", labels = TRUE)
+
+hist((pdi09$`White alone (population)`), xlab = 'White alone (population percentage, 2009)', main = 'Histogram of White alone (population percentage, 2009)', col = "pink", labels = TRUE)
+
+hist((pdi09$`Hispanic or Latino (population)`), xlab = 'Hispanic or Latino alone (population percentage, 2009)', main = 'Histogram of Hispanic or Latino alone (population percentage, 2009)', col = "cyan", labels = TRUE)
+
+ggplot(data = pdi09, aes(x = `Black or African American alone (population)`, y = `Income share of the top 5%`)) +
+  geom_point(color = "yellow", alpha = 0.6) +
+  geom_smooth(method = "lm") +
+  labs(x = "Black or African American alone (population)", y = "Per capita income in the past 12 months",
+       title = "Scatter Plot of Income share of the top 5% and Black or African American Population",
+       subtitle = "Against Black or African American Population",
+       caption = "Source: Your Data Source") +
+  theme_minimal()
+ggplot(data = pdi09, aes(x = `White alone (population)`, y = `Income share of the top 5%`)) +
+  geom_point(color = "pink", alpha = 0.6) +
+  geom_smooth(method = "lm") +
+  labs(x = "White alone (population)", y = "Income share of the top 5%",
+       title = "Scatter Income share of the top 5% and White Population",
+       subtitle = "Against White Population",
+       caption = "Source: Your Data Source") +
+  theme_minimal()
+
+ggplot(data = pdi09, aes(x = `Hispanic or Latino (population)`, y = `Income share of the top 5%`)) +
+  geom_point(color = "cyan", alpha = 0.6) +
+  geom_smooth(method = "lm") +
+  labs(x = "Hispanic or Latino (population)", y = "Income share of the top 5%",
+       title = "Scatter Plot of Income share of the top 5% and Hispanic or Latino Population",
+       subtitle = "Against Hispanic or Latino Population",
+       caption = "Source: Your Data Source") +
+  theme_minimal()
+
+
+hist((pdi09$`Black or African American alone (population)`), xlab = 'Black or African American alone (population percentage, 2009)', main = 'Histogram of Black or African American alone (population percentage, 2009)', col = "yellow", labels = TRUE)
+
+hist((pdi09$`White alone (population)`), xlab = 'White alone (population percentage, 2009)', main = 'Histogram of White alone (population percentage, 2009)', col = "pink", labels = TRUE)
+
+hist((pdi09$`Hispanic or Latino (population)`), xlab = 'Hispanic or Latino alone (population percentage, 2009)', main = 'Histogram of Hispanic or Latino alone (population percentage, 2009)', col = "cyan", labels = TRUE)
+
+ggplot(data = pdi09, aes(x = `Black or African American alone (population)`, y = `Income share of the top 5%`)) +
+  geom_point(color = "yellow", alpha = 0.6) +
+  geom_smooth(method = "lm") +
+  labs(x = "Black or African American alone (population)", y = "Per capita income in the past 12 months",
+       title = "Scatter Plot of Income share of the top 5% and Black or African American Population",
+       subtitle = "Against Black or African American Population",
+       caption = "Source: Your Data Source") +
+  theme_minimal()
+ggplot(data = pdi09, aes(x = `White alone (population)`, y = `Income share of the top 5%`)) +
+  geom_point(color = "pink", alpha = 0.6) +
+  geom_smooth(method = "lm") +
+  labs(x = "White alone (population)", y = "Income share of the top 5%",
+       title = "Scatter Income share of the top 5% and White Population",
+       subtitle = "Against White Population",
+       caption = "Source: Your Data Source") +
+  theme_minimal()
+
+ggplot(data = pdi09, aes(x = `Hispanic or Latino (population)`, y = `Income share of the top 5%`)) +
+  geom_point(color = "cyan", alpha = 0.6) +
+  geom_smooth(method = "lm") +
+  labs(x = "Hispanic or Latino (population)", y = "Income share of the top 5%",
+       title = "Scatter Plot of Income share of the top 5% and Hispanic or Latino Population",
+       subtitle = "Against Hispanic or Latino Population",
+       caption = "Source: Your Data Source") +
+  theme_minimal()
+
+
+hist((pdi14$`Black or African American alone (population)`), xlab = 'Black or African American alone (population percentage, 2014)', main = 'Histogram of Black or African American alone (population percentage, 2014)', col = "yellow", labels = TRUE)
+
+hist((pdi14$`White alone (population)`), xlab = 'White alone (population percentage, 2014)', main = 'Histogram of White alone (population percentage, 2014)', col = "pink", labels = TRUE)
+
+hist((pdi14$`Hispanic or Latino (population)`), xlab = 'Hispanic or Latino alone (population percentage, 2014)', main = 'Histogram of Hispanic or Latino alone (population percentage, 2014)', col = "cyan", labels = TRUE)
+
+ggplot(data = pdi14, aes(x = `Black or African American alone (population)`, y = `Income share of the top 5%`)) +
+  geom_point(color = "yellow", alpha = 0.6) +
+  geom_smooth(method = "lm") +
+  labs(x = "Black or African American alone (population)", y = "Per capita income in the past 12 months",
+       title = "Scatter Plot of Income share of the top 5% and Black or African American Population",
+       subtitle = "Against Black or African American Population",
+       caption = "Source: Your Data Source") +
+  theme_minimal()
+ggplot(data = pdi14, aes(x = `White alone (population)`, y = `Income share of the top 5%`)) +
+  geom_point(color = "pink", alpha = 0.6) +
+  geom_smooth(method = "lm") +
+  labs(x = "White alone (population)", y = "Income share of the top 5%",
+       title = "Scatter Income share of the top 5% and White Population",
+       subtitle = "Against White Population",
+       caption = "Source: Your Data Source") +
+  theme_minimal()
+
+ggplot(data = pdi14, aes(x = `Hispanic or Latino (population)`, y = `Income share of the top 5%`)) +
+  geom_point(color = "cyan", alpha = 0.6) +
+  geom_smooth(method = "lm") +
+  labs(x = "Hispanic or Latino (population)", y = "Income share of the top 5%",
+       title = "Scatter Plot of Income share of the top 5% and Hispanic or Latino Population",
+       subtitle = "Against Hispanic or Latino Population",
+       caption = "Source: Your Data Source") +
+  theme_minimal()
+
+
+hist((pdi19$`Black or African American alone (population)`), xlab = 'Black or African American alone (population percentage, 2019)', main = 'Histogram of Black or African American alone (population percentage, 2019)', col = "yellow", labels = TRUE)
+
+hist((pdi19$`White alone (population)`), xlab = 'White alone (population percentage, 2019)', main = 'Histogram of White alone (population percentage, 2019)', col = "pink", labels = TRUE)
+
+hist((pdi19$`Hispanic or Latino (population)`), xlab = 'Hispanic or Latino alone (population percentage, 2019)', main = 'Histogram of Hispanic or Latino alone (population percentage, 2019)', col = "cyan", labels = TRUE)
+
+ggplot(data = pdi19, aes(x = `Black or African American alone (population)`, y = `Income share of the top 5%`)) +
+  geom_point(color = "yellow", alpha = 0.6) +
+  geom_smooth(method = "lm") +
+  labs(x = "Black or African American alone (population)", y = "Per capita income in the past 12 months",
+       title = "Scatter Plot of Income share of the top 5% and Black or African American Population",
+       subtitle = "Against Black or African American Population",
+       caption = "Source: Your Data Source") +
+  theme_minimal()
+ggplot(data = pdi19, aes(x = `White alone (population)`, y = `Income share of the top 5%`)) +
+  geom_point(color = "pink", alpha = 0.6) +
+  geom_smooth(method = "lm") +
+  labs(x = "White alone (population)", y = "Income share of the top 5%",
+       title = "Scatter Income share of the top 5% and White Population",
+       subtitle = "Against White Population",
+       caption = "Source: Your Data Source") +
+  theme_minimal()
+
+ggplot(data = pdi19, aes(x = `Hispanic or Latino (population)`, y = `Income share of the top 5%`)) +
+  geom_point(color = "cyan", alpha = 0.6) +
+  geom_smooth(method = "lm") +
+  labs(x = "Hispanic or Latino (population)", y = "Income share of the top 5%",
+       title = "Scatter Plot of Income share of the top 5% and Hispanic or Latino Population",
+       subtitle = "Against Hispanic or Latino Population",
+       caption = "Source: Your Data Source") +
+  theme_minimal()
+```
+
+3. Working age
+
+```{r echo = FALSE}
+hist((pdi09$`Population between 25 and 64 years old`), xlab = 'Population between 25 and 64 years old (2009)', main = 'Histogram of population between 25 and 64 years old (2009)', col = "red", labels = TRUE)
+
+hist((pdi14$`Population between 25 and 64 years old`), xlab = 'Population between 25 and 64 years old (2014)', main = 'Histogram of population between 25 and 64 years old (2014)', col = "green", labels = TRUE)
+
+
+hist((pdi19$`Population between 25 and 64 years old`), xlab = 'Population between 25 and 64 years old (2019)', main = 'Histogram of population between 25 and 64 years old (2019)', col = "blue", labels = TRUE)
+
+ggplot(data = pdi09, aes(x = `Population between 25 and 64 years old`, y = `Income share of the top 5%`)) +
+  geom_point(color = "red", alpha = 0.6) +
+  geom_smooth(method = "lm") +
+  labs(x = "Population between 25 and 64 years old", y = "Income share of the top 5%",
+       title = "Scatter Plot of Income share of the top 5% and Population between 25 and 64 years old",
+       subtitle = "Against Population between 25 and 64 years old",
+       caption = "Source: Your Data Source") +
+  theme_minimal()
+
+ggplot(data = pdi14, aes(x = `Population between 25 and 64 years old`, y = `Income share of the top 5%`)) +
+  geom_point(color = "green", alpha = 0.6) +
+  geom_smooth(method = "lm") +
+  labs(x = "Hispanic or Latino (population)", y = "Income share of the top 5%",
+       title = "Scatter Plot of Income share of the top 5% and Population between 25 and 64 years old",
+       subtitle = "Population between 25 and 64 years old",
+       caption = "Source: Your Data Source") +
+  theme_minimal()
+
+ggplot(data = pdi19, aes(x = `Population between 25 and 64 years old`, y = `Income share of the top 5%`)) +
+  geom_point(color = "blue", alpha = 0.6) +
+  geom_smooth(method = "lm") +
+  labs(x = "Population between 25 and 64 years old", y = "Income share of the top 5%",
+       title = "Scatter Plot of Income share of the top 5% and Population between 25 and 64 years old",
+       subtitle = "Population between 25 and 64 years old",
+       caption = "Source: Your Data Source") +
+  theme_minimal()
+
 
 ```
