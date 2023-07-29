@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.7.21)  28 JUL 2023 16:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.7.21)  30 JUL 2023 01:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -307,6 +307,15 @@ File: l3backend-pdftex.def 2023-04-19 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count286
 \l__pdf_internal_box=\box53
 ) (./Assignment5.aux
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
 
 LaTeX Warning: Label `' multiply defined.
 
@@ -823,7 +832,72 @@ File: Assignment5_files/figure-latex/unnamed-chunk-6-6.pdf Graphic file (type pd
 <use Assignment5_files/figure-latex/unnamed-chunk-6-6.pdf>
 Package pdftex.def Info: Assignment5_files/figure-latex/unnamed-chunk-6-6.pdf  used on input line 533.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-[47 <./Assignment5_files/figure-latex/unnamed-chunk-6-5.pdf>] [48 <./Assignment5_files/figure-latex/unnamed-chunk-6-6.pdf>] (./Assignment5.aux)
+[47 <./Assignment5_files/figure-latex/unnamed-chunk-6-5.pdf>]
+Overfull \hbox (133.99323pt too wide) in paragraph at lines 571--571
+[]\T1/lmtt/m/n/10 ## % Table created by stargazer v.5.2.3 by Marek Hlavac, Social Policy Institute. E-mail: marek.hlavac at gmail.com[] 
+ []
+
+[48 <./Assignment5_files/figure-latex/unnamed-chunk-6-6.pdf>]
+Overfull \hbox (13.24358pt too wide) in paragraph at lines 571--571
+[]\T1/lmtt/m/n/10 ## \textit{Note:}  & \multicolumn{1}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\[] 
+ []
+
+
+Overfull \hbox (133.99323pt too wide) in paragraph at lines 613--613
+[]\T1/lmtt/m/n/10 ## % Table created by stargazer v.5.2.3 by Marek Hlavac, Social Policy Institute. E-mail: marek.hlavac at gmail.com[] 
+ []
+
+
+Overfull \hbox (312.4927pt too wide) in paragraph at lines 613--613
+[]\T1/lmtt/m/n/10 ## Statistic & \multicolumn{1}{c}{N} & \multicolumn{1}{c}{Mean} & \multicolumn{1}{c}{St. Dev.} & \multicolumn{1}{c}{Min} & \multicolumn{1}{c}{Max} \\[] 
+ []
+
+
+Overfull \hbox (18.49356pt too wide) in paragraph at lines 613--613
+[]\T1/lmtt/m/n/10 ## Household with public assistance income & 2,820 & 3,010.680 & 10,661.130 & 14 & 225,193 \\[] 
+ []
+
+
+Overfull \hbox (223.24297pt too wide) in paragraph at lines 613--613
+[]\T1/lmtt/m/n/10 ## Per capita income in the past 12 months (in 2009 inflation-adjusted dollars) & 2,819 & 24,788.780 & 5,869.824 & 6,022 & 60,746 \\[] 
+ []
+
+
+Overfull \hbox (13.24358pt too wide) in paragraph at lines 613--613
+[]\T1/lmtt/m/n/10 ## Population 16 Years and Older & 2,820 & 251,821.000 & 845,674.700 & 8,353 & 16,053,689 \\[] 
+ []
+
+
+Overfull \hbox (60.49344pt too wide) in paragraph at lines 613--613
+[]\T1/lmtt/m/n/10 ## Population between 25 and 64 years old & 2,820 & 198,570.800 & 680,563.700 & 4,872 & 13,545,192 \\[] 
+ []
+
+
+Overfull \hbox (133.99323pt too wide) in paragraph at lines 613--613
+[]\T1/lmtt/m/n/10 ## Population with some college degree or associate's degree & 2,820 & 27,693.540 & 96,507.270 & 246 & 2,376,327 \\[] 
+ []
+
+
+Overfull \hbox (76.2434pt too wide) in paragraph at lines 613--613
+[]\T1/lmtt/m/n/10 ## Population with a Bachelor's degree or higher & 2,820 & 60,568.150 & 243,650.100 & 409 & 5,430,506 \\[] 
+ []
+
+
+Overfull \hbox (60.49344pt too wide) in paragraph at lines 613--613
+[]\T1/lmtt/m/n/10 ## Black or African American alone (population) & 2,820 & 40,509.450 & 178,225.900 & 0 & 3,412,320 \\[] 
+ []
+
+
+Overfull \hbox (76.2434pt too wide) in paragraph at lines 613--613
+[]\T1/lmtt/m/n/10 ## American Indian and Alaska Native alone (population) & 2,820 & 2,245.174 & 7,240.922 & 0 & 107,728 \\[] 
+ []
+
+
+Overfull \hbox (159.16109pt too wide) in paragraph at lines 695--727
+ [][] 
+ []
+
+[49] [50] [51] (./Assignment5.aux)
  ***********
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-06-30>
@@ -835,18 +909,18 @@ Package rerunfilecheck Info: File `Assignment5.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 11060 strings out of 477197
- 184401 string characters out of 5812280
+ 11066 strings out of 477197
+ 184443 string characters out of 5812280
  1972238 words of memory out of 5000000
  31827 multiletter control sequences out of 15000+600000
  599690 words of font info for 74 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 75i,10n,79p,316b,576s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/Users/yosef/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/Users/yosef/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/Users/yosef/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/yosef/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/Users/yosef/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb><c:/Users/yosef/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr5.pfb><c:/Users/yosef/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/Users/yosef/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/Users/yosef/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy7.pfb><c:/Users/yosef/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb>
-Output written on Assignment5.pdf (48 pages, 1378308 bytes).
+ 75i,10n,79p,316b,578s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<c:/Users/yosef/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/Users/yosef/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/Users/yosef/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/yosef/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/Users/yosef/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb><c:/Users/yosef/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr5.pfb><c:/Users/yosef/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/Users/yosef/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/Users/yosef/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/Users/yosef/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy7.pfb><c:/Users/yosef/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb>
+Output written on Assignment5.pdf (51 pages, 1396096 bytes).
 PDF statistics:
- 686 PDF objects out of 1000 (max. 8388607)
- 518 compressed objects within 6 object streams
- 59 named destinations out of 1000 (max. 500000)
+ 708 PDF objects out of 1000 (max. 8388607)
+ 535 compressed objects within 6 object streams
+ 65 named destinations out of 1000 (max. 500000)
  231 words of extra memory for PDF output out of 10000 (max. 10000000)
 

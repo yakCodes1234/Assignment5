@@ -11,6 +11,7 @@ output: pdf_document
 library(readxl)
 library(stargazer)
 library(ggplot2)
+library(plm)
 pdi <- as.data.frame(read_excel("pdataincineq.xlsx"))
 
 pdi09 <- pdi[-c(954:2821),]
@@ -612,5 +613,152 @@ ggplot(data = pdi19, aes(x = `Population between 25 and 64 years old`, y = `Inco
        caption = "Source: Your Data Source") +
   theme_minimal()
 
+```
+```{r echo =FALSE}
+names(pdi)[names(pdi) == "Gini Index"] <- "Gini"
+names(pdi)[names(pdi) == "White alone (population)"] <- "White"
+names(pdi)[names(pdi) == "Households with Income in the past 12 months below poverty level"] <- "Poverty"
+names(pdi)[names(pdi) == "Population with a High school diploma"] <- "HSdiploma"
+names(pdi)[names(pdi) == "Married (population)"] <- "Married"
 
+pdi$Poverty <- help(pdi$Poverty,pdi$`Number of households`)
+pdi$White <- help(pdi$White,pdi$`Total Population`)
+pdi$HSdiploma <- help(pdi$HSdiploma,pdi$`Total Population`)
+pdi$Married <- help(pdi$Married,pdi$`Total Population`)
+
+
+
+
+```
+
+
+
+
+
+```{r echo=FALSE}
+
+within_reg <- plm(Gini ~ White + Poverty + HSdiploma + Married, index = c("MSACode", "Year"), model = "within", data = pdi)
+
+regreg <- lm(Gini ~ White + Poverty + HSdiploma + Married, data = pdi)
+
+stargazer(within_reg)
+
+stargazer(pdi)
+
+```
+
+```{=latex}
+\begin{table}[!htbp] \centering 
+  \caption{} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}}lc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & \multicolumn{1}{c}{\textit{Dependent variable:}} \\ 
+\cline{2-2} 
+\\[-1.8ex] & Gini \\ 
+\hline \\[-1.8ex] 
+ White & $-$0.063$^{***}$ \\ 
+  & (0.012) \\ 
+  & \\ 
+ Poverty & 0.238$^{***}$ \\ 
+  & (0.019) \\ 
+  & \\ 
+ HSdiploma & 0.054$^{**}$ \\ 
+  & (0.022) \\ 
+  & \\ 
+ Married & $-$0.243$^{***}$ \\ 
+  & (0.021) \\ 
+  & \\ 
+\hline \\[-1.8ex] 
+Observations & 2,820 \\ 
+R$^{2}$ & 0.208 \\ 
+Adjusted R$^{2}$ & $-$0.241 \\ 
+F Statistic & 118.045$^{***}$ (df = 4; 1800) \\ 
+\hline 
+\hline \\[-1.8ex] 
+\textit{Note:}  & \multicolumn{1}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+\end{tabular} 
+\end{table}
+
+
+
+
+
+
+\begin{table}[!htbp] \centering 
+  \caption{} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}}lc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+ & \multicolumn{1}{c}{\textit{Dependent variable:}} \\ 
+\cline{2-2} 
+\\[-1.8ex] & Gini \\ 
+\hline \\[-1.8ex] 
+ White & $-$0.063$^{***}$ \\ 
+  & (0.012) \\ 
+  & \\ 
+ Poverty & 0.238$^{***}$ \\ 
+  & (0.019) \\ 
+  & \\ 
+ HSdiploma & 0.054$^{**}$ \\ 
+  & (0.022) \\ 
+  & \\ 
+ Married & $-$0.243$^{***}$ \\ 
+  & (0.021) \\ 
+  & \\ 
+\hline \\[-1.8ex] 
+Observations & 2,820 \\ 
+R$^{2}$ & 0.208 \\ 
+Adjusted R$^{2}$ & $-$0.241 \\ 
+F Statistic & 118.045$^{***}$ (df = 4; 1800) \\ 
+\hline 
+\hline \\[-1.8ex] 
+\textit{Note:}  & \multicolumn{1}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+\end{tabular} 
+\end{table}
+
+
+
+
+
+
+
+\begin{table}[!htbp] \centering 
+  \caption{} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}}lccccc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+Statistic & \multicolumn{1}{c}{N} & \multicolumn{1}{c}{Mean} & \multicolumn{1}{c}{St. Dev.} & \multicolumn{1}{c}{Min} & \multicolumn{1}{c}{Max} \\ 
+\hline \\[-1.8ex] 
+Year & 2,820 & 2,013.973 & 4.095 & 2,009 & 2,019 \\ 
+MSACode & 2,820 & 29,771.910 & 11,381.340 & 10,020 & 49,820 \\ 
+Income share of the top 5\% & 2,819 & 20.526 & 2.311 & 14.400 & 31.400 \\ 
+Gini & 2,820 & 44.713 & 3.135 & 35.000 & 60.230 \\ 
+Labor Force Participation Rate & 2,820 & 60.672 & 6.843 & 22.500 & 83.400 \\ 
+Unemployment Rate & 2,820 & 19.320 & 17.910 & 1.400 & 72.600 \\ 
+Number of households & 2,820 & 117,395.400 & 379,436.000 & 3,548 & 7,105,003 \\ 
+Poverty & 2,820 & 16.047 & 6.680 & 4.170 & 63.690 \\ 
+Household with public assistance income & 2,820 & 3,010.680 & 10,661.130 & 14 & 225,193 \\ 
+Total Population & 2,820 & 317,254.800 & 1,064,193.000 & 11,100 & 19,865,045 \\ 
+Per capita income in the past 12 months (in 2009 inflation-adjusted dollars) & 2,819 & 24,788.780 & 5,869.824 & 6,022 & 60,746 \\ 
+Population 16 Years and Older & 2,820 & 251,821.000 & 845,674.700 & 8,353 & 16,053,689 \\ 
+Population between 25 and 64 years old & 2,820 & 198,570.800 & 680,563.700 & 4,872 & 13,545,192 \\ 
+HSdiploma & 2,820 & 17.837 & 4.387 & 5.280 & 33.040 \\ 
+Population with some college degree or associate's degree & 2,820 & 27,693.540 & 96,507.270 & 246 & 2,376,327 \\ 
+Population with a Bachelor's degree or higher & 2,820 & 60,568.150 & 243,650.100 & 409 & 5,430,506 \\ 
+Male & 2,820 & 155,956.100 & 520,112.100 & 5,786 & 9,593,127 \\ 
+Female & 2,820 & 161,298.800 & 544,169.500 & 5,265 & 10,271,918 \\ 
+White & 2,820 & 82.153 & 14.190 & 14.390 & 98.710 \\ 
+Black or African American alone (population) & 2,820 & 40,509.450 & 178,225.900 & 0 & 3,412,320 \\ 
+American Indian and Alaska Native alone (population) & 2,820 & 2,245.174 & 7,240.922 & 0 & 107,728 \\ 
+Asian alone (population) & 2,820 & 16,518.480 & 109,554.100 & 0 & 2,166,784 \\ 
+Hispanic or Latino (population) & 2,820 & 58,262.940 & 311,995.000 & 14 & 5,967,160 \\ 
+Married & 2,820 & 40.508 & 4.343 & 22.250 & 59.220 \\ 
+Not Married (population) & 1,891 & 125,732.700 & 435,166.400 & 3,908 & 8,267,449 \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table} 
 ```
